@@ -42,7 +42,7 @@ def computer_plays():
 
 #the players input for what he wants
 def player_input():
-    player_input = ["rock", "paper", "scissors", "quit"]
+    player_input = ["rock", "paper", "scissors", "quit", "no", "yes"]
     player_choice = input("Enter rock, paper or scissors or if you want to quit, type quit: ")
     while player_choice not in player_input:
         print("try again thats not a correct input")
@@ -52,7 +52,8 @@ def player_input():
  #the main logic for the game  
 def win_lose():
     while True:
-            rounds_total = rounds()
+        rounds_total = rounds()
+        while rounds_total != 0:
             playerinput = player_input()
             comp_play = computer_plays()
             if playerinput == comp_play:
@@ -63,23 +64,30 @@ def win_lose():
                     print("The total player wins is", player_wins())
                 else:
                     print("computer beats Player with", comp_play, "against the players", playerinput)
-                    print("The computer total wins is: ", computer_wins_total())
+                    print("The computer total wins is", computer_wins_total())
             elif playerinput == "paper":
                 if comp_play == "rock":
                     print("Player beats computer with", playerinput, "against", comp_play)
                     print("The total player wins is", player_wins())
                 else:
                     print("computer beats Player with", comp_play, "against the players", playerinput)
-                    print("The computer total wins is: ", computer_wins_total())
+                    print("The computer total wins is", computer_wins_total())
             elif playerinput == "scissors":
                 if comp_play == "paper":
                     print("Player beats computer with", playerinput, "against", comp_play)
                     print("The total player wins is", player_wins())
                 else:
-                    print("computer beats Player with", comp_play, "against the players", playerinput)
+                    print("computer beats Player with", comp_play, "against the players", playerinput) 
                     print("The computer total wins is", computer_wins_total())
             if playerinput == "quit":
                 print("quitting the game, goodbye!")
                 break
+            rounds_total -= 1
+            print("There are", rounds_total, "rounds left")
+        if player_total_wins > computer_wins:
+            print("Player wins with", player_total_wins, "rounds won!")
+        else:
+            print("Computer wins with", computer_wins, "rounds won!")
+        break
                         
 main()
